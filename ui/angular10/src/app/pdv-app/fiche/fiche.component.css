@@ -1,0 +1,30 @@
+.main-container{
+    display: inline-flex;
+    flex-direction: row;
+
+    height: calc(100%-64px);
+    width: 100%;
+}
+
+.mainform-container{
+    padding: 10px 20px;
+}
+
+h1, h2{
+    text-align: center;
+}
+
+.search-form {
+    display: inline-flex;
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+  
+.search-full-width {
+    width: 100%;
+}
+
+.search-form button {
+    margin-bottom: 20px;
+}

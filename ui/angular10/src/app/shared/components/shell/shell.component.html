@@ -1,0 +1,33 @@
+<div class="flexbox-parent">
+  <div class="flexbox-item header">
+    <mat-toolbar color="primary" role="header" class="app-navbar">
+      <div fxFlex="50px">
+        <button
+          type="button"
+          class="menu-btn"
+          mat-icon-button
+          (click)="sidenav.toggle()"
+        >
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+      <div fxFlex="100px">{{ currentUser?.username }}</div>
+      <div fxFlex fxFill></div>
+      <div fxFlex="200px" fxLayoutAlign="end" class="avatar-col">
+        <button mat-button (click)="logout()">Logout</button>
+      </div>
+    </mat-toolbar>
+  </div>
+
+  <div class="flexbox-item fill-area content flexbox-item-grow">
+    <mat-drawer-container class="app-container">
+      <mat-drawer class="app-sidenav" #sidenav mode="side" opened="false">
+        <app-sidenav></app-sidenav>
+      </mat-drawer>
+      <mat-drawer-content class="app-page-container">
+        <router-outlet></router-outlet>
+      </mat-drawer-content>
+    </mat-drawer-container>
+  </div>
+</div>
+  
