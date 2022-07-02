@@ -25,8 +25,8 @@ server {
     charset utf-8;
     client_max_body_size 100M;
 
-    ssl_certificate /etc/letsencrypt/live/default/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/default/privkey.pem;
+    ssl_certificate /etc/letsencrypt/live/$SERVER_ADDRESS/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/$SERVER_ADDRESS/privkey.pem;
     include /etc/letsencrypt/options-ssl-nginx.conf;
     ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
 
