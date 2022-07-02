@@ -28,7 +28,7 @@ if (!existsSync(envDirectory)) {
 
 // Checks whether command line argument of `prod` was provided signifying production mode
 const isProduction = environment === 'prod';
-const isSSL = nginx_mode === 'prod';
+const isSSL = nginx_mode != 'dev';
 
 // choose the correct targetPath based on the environment chosen
 const targetPath = isProduction
