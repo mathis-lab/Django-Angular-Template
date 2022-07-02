@@ -1,0 +1,23 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~material-design-icons-iconfont/dist/material-design-icons.css';
+
+html, body {
+	background-color: #eee;
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: arial, sans-serif;
+    font-size: 12px;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+label {
+    margin: 0;
+    white-space: nowrap;
+}
+
+button {
+    min-width: fit-content !important;
+}

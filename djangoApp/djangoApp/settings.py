@@ -1,10 +1,6 @@
 import os
 
-if 'DJANGO_SETTINGS' in os.environ and os.environ['DJANGO_SETTINGS'] == "prod":
-    print("PROD SETTINGS")
+if os.environ.get("ENV") in ["prod", "preprod"]:
     from .settings_prod import *
 else:
-    print("DEV SETTINGS")
     from .settings_dev import *
-
-

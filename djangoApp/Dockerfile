@@ -1,4 +1,4 @@
-FROM python:3.8.8
+FROM python:3.10.2
 
 RUN pip install --upgrade pip
 
@@ -11,5 +11,4 @@ WORKDIR /djangoApp
 
 COPY . /djangoApp/
 
-COPY entrypoint.sh /
 ENTRYPOINT ["sh", "entrypoint.sh"]

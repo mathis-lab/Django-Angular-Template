@@ -3,6 +3,10 @@ npm i mat-currency-format
 ng add @ng-bootstrap/ng-bootstrap
 ng add @fortawesome/angular-fontawesome@0.8.2
 ng add @angular/material
+npm i @angular/flex-layout
 npm i @swimlane/ngx-charts
 npm i material-design-icons
+npm i @types/file-saver
+npm i @types/chartist
+npm i bootstrap
 ng serve

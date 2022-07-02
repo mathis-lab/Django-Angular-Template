@@ -1,1 +1,11 @@
+/venv/
 /.idea/
+/djangoApp/DataPricer/
+/djangoApp/db.sqlite3
+/djangoApp/general.log
+/ui/app/.angular
+/ui/app/node_modules
+/ui/certbot/
+/logs/
+/data/
+.env

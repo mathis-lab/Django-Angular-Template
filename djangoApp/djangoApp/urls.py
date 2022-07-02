@@ -16,21 +16,17 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import include, path
-from django.conf.urls import url
-from django.views.generic import TemplateView
-from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
+from rest_framework_simplejwt.views import (
+    TokenVerifyView,
+)
 
-from .settings import ENABLE_DJANGO_HOME
+from .apps.core.views import CustomTokenObtainPairView, CustomTokenRefreshView
+
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path(r'api-token-auth/', obtain_jwt_token),
-    path(r'api-token-refresh/', refresh_jwt_token),
-
-    path("api/pdv/", include("djangoApp.apps.pdv.urls", namespace="pdv")),
+    path("admin/", admin.site.urls),
+    path("api/token/", CustomTokenObtainPairView.as_view(), name="token_obtain_pair"),
+    path("api/token/refresh/", CustomTokenRefreshView.as_view(), name="token_refresh"),
+    path("api/token/verify/", TokenVerifyView.as_view(), name="token_verify"),
+    path("api/core/", include("djangoApp.apps.core.urls", namespace="core")),
 ]
-
-if ENABLE_DJANGO_HOME:
-    urlpatterns.append(
-        url(r'^.*', TemplateView.as_view(template_name="home.html"), name="home")
-    )
