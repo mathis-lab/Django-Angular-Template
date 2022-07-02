@@ -5,6 +5,7 @@ const { argv } = require('yargs');
 
 require('dotenv').config();
 const environment = argv.environment;
+const nginx_mode = argv.nginx_mode;
 
 function writeFileUsingFS(targetPath, environmentFileContent) {
   writeFile(targetPath, environmentFileContent, function (err) {
@@ -27,11 +28,16 @@ if (!existsSync(envDirectory)) {
 
 // Checks whether command line argument of `prod` was provided signifying production mode
 const isProduction = environment === 'prod';
+const isSSL = nginx_mode === 'prod';
 
 // choose the correct targetPath based on the environment chosen
 const targetPath = isProduction
   ? './src/environments/environment.prod.ts'
   : './src/environments/environment.ts';
+
+const http_or_https = isSSL
+  ? 'https'
+  : 'http';
 
 //creates the `environment.prod.ts` or `environment.ts` file if it does not exist
 writeFileUsingFS(targetPath, '');
@@ -42,7 +48,7 @@ const environmentFileContent = `
   export const environment = {
     production:  ${isProduction},
     staticURL: '',
-    apiUrl: "${argv.server_address}"
+    apiUrl: "${http_or_https}://${argv.server_address}"
   };
 `;
 

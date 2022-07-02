@@ -17,7 +17,8 @@ COPY app /app/
 # Build app
 ARG ENV
 ARG SERVER_ADDRESS
-RUN npm run config -- --server_address=${SERVER_ADDRESS}
+ARG NGINX_MODE
+RUN npm run config -- --server_address=${SERVER_ADDRESS} --nginx_mode=${NGINX_MODE}
 RUN npm run build -- --configuration=${ENV}
 
 ### Stage 2: delivery ###
