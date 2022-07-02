@@ -41,7 +41,7 @@ echo
 
 
 echo "### Starting nginx ..."
-docker-compose up --force-recreate -d nginx
+docker-compose up -e NGINX_MODE=letsencrypt --force-recreate -d nginx
 echo
 
 echo "### Deleting dummy certificate for $domains ..."
