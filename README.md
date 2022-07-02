@@ -58,6 +58,8 @@ $ docker logs [container_name]
 ```
 
 SSL key gen :
+
+The ``init_letsencrypt.sh`` script need to be launch with the ``NGINX_MODE=letsencrypt`` in the ``.env`` file.
 ```
 $ chmod +x init-letsencrypt.sh
 $ sudo ./init-letsencrypt.sh
