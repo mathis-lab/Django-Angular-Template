@@ -1,4 +1,4 @@
-/* tslint:disable */
+/* eslint-disable */
 // @ts-nocheck
 const { writeFile, existsSync, mkdirSync } = require('fs');
 const { argv } = require('yargs');
@@ -54,4 +54,4 @@ const environmentFileContent = `
 
 writeFileUsingFS(targetPath, environmentFileContent); // appending data into the target file
 
-/* tslint:enable */
+/* eslint-enable */
