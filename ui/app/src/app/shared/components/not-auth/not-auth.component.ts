@@ -5,11 +5,8 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './not-auth.component.html',
   styleUrls: ['./not-auth.component.css']
 })
-export class NotAuthComponent implements OnInit {
+export class NotAuthComponent {
 
   constructor() { }
-
-  ngOnInit() {
-  }
 
 }

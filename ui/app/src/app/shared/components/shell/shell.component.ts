@@ -8,7 +8,7 @@ import { AuthService } from '../../../core/auth.service';
   templateUrl: './shell.component.html',
   styleUrls: ['./shell.component.scss']
 })
-export class ShellComponent implements OnInit {
+export class ShellComponent {
   title = "Menu";
   currentUser: User;
 
@@ -16,9 +16,6 @@ export class ShellComponent implements OnInit {
     this.authService.currentUser.subscribe(x => {
       this.currentUser = x
     });
-  }
-
-  ngOnInit() {
   }
 
   logout() {
