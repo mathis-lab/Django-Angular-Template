@@ -23,8 +23,6 @@ DATA_ROOT = os.path.join("..", "data")
 STATIC_ROOT = "/static/"  # os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = "/static/"
 
-ENABLE_DJANGO_HOME = False
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = Secrets.SECRET_KEY
 

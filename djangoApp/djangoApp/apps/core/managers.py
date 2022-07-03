@@ -13,15 +13,23 @@ class UserSet(QuerySet):
 
 
 class UserManager(BaseUserManager):
-    def create_user(self, email, username, password=None, is_active=True, is_staff=False, is_admin=False):
+    def create_user(
+        self,
+        email,
+        username,
+        password=None,
+        is_active=True,
+        is_staff=False,
+        is_admin=False,
+    ):
         """
         Creates and saves a User with the given email and password.
         """
         if not email:
-            raise ValueError('Users must have an email address')
+            raise ValueError("Users must have an email address")
 
         if not username:
-            raise ValueError('Users must have an username')
+            raise ValueError("Users must have an username")
 
         user = self.model(
             username=username,

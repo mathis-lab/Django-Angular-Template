@@ -22,8 +22,6 @@ DATA_ROOT = os.path.join("..", "data")
 STATIC_ROOT = "/static/"
 STATIC_URL = "/static/"
 
-ENABLE_DJANGO_HOME = False
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
