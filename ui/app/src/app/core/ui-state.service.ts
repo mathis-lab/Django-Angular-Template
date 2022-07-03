@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 export class UiState {
-  constructor(public actionOngoing: boolean, public message:string) {}
+  constructor(public actionOngoing: boolean, public message: string) {}
 }
 
 export const initialUiState = {
@@ -14,44 +14,49 @@ export const initialUiState = {
   providedIn: 'root'
 })
 export class UiStateService {
-    private _uiState:BehaviorSubject<UiState> = new BehaviorSubject(initialUiState);
-    private _listModule:Array<string> = [];
+  private _uiState: BehaviorSubject<UiState> = new BehaviorSubject(
+    initialUiState
+  );
 
-    get uiState() {
-        return this._uiState.asObservable();
-    }
+  private _listModule: Array<string> = [];
 
-    get state() {
-      return this._uiState.value.actionOngoing;
-    }
+  get uiState() {
+    return this._uiState.asObservable();
+  }
 
-    startBackendAction(module:string = "default") {
-      this._listModule.push(module);
-      this._uiState.next({
-          actionOngoing: true,
-          message:'',
-      });
-    }
+  get state() {
+    return this._uiState.value.actionOngoing;
+  }
 
-    endBackendAction(module:string = "default") {
-      this._listModule = this._listModule.filter((obj:string) => (obj != module) && (obj != "default"))
-      if (this._listModule.length == 0) {
-        this._uiState.next({
-          actionOngoing: false,
-          message: '',
-      });
-      }
-    }
+  startBackendAction(module: string = 'default') {
+    this._listModule.push(module);
+    this._uiState.next({
+      actionOngoing: true,
+      message: ''
+    });
+  }
 
-    endAllBackendAction() {
-      this._listModule = [];
+  endBackendAction(module: string = 'default') {
+    this._listModule = this._listModule.filter(
+      (obj: string) => obj != module && obj != 'default'
+    );
+    if (this._listModule.length == 0) {
       this._uiState.next({
         actionOngoing: false,
-        message: '',
+        message: ''
       });
     }
+  }
 
-    isLoading(module:string = "default") {
-      return this._listModule.includes(module);
-    }
+  endAllBackendAction() {
+    this._listModule = [];
+    this._uiState.next({
+      actionOngoing: false,
+      message: ''
+    });
+  }
+
+  isLoading(module: string = 'default') {
+    return this._listModule.includes(module);
+  }
 }

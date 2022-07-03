@@ -1,28 +1,39 @@
 <div id="full-window">
-    <div class="wrapper">
-        <div class="title-text">
-            <div class="title">App</div>
-        </div>
-        <div class="form-container">
-            <div class="form-inner">
-                <form [formGroup]="loginForm" class="login" (ngSubmit)="onSubmit()">
-                    <div class="field">
-                        <input type="text" placeholder="Utilisateur" name="username" formControlName="username" required>
-                    </div>
-                    <div class="field">
-                        <input type="password" placeholder="Password" name="password" formControlName="password" required>
-                    </div>
-                    <!-- <div class="pass-link">
+  <div class="wrapper">
+    <div class="title-text">
+      <div class="title">App</div>
+    </div>
+    <div class="form-container">
+      <div class="form-inner">
+        <form [formGroup]="loginForm" class="login" (ngSubmit)="onSubmit()">
+          <div class="field">
+            <input
+              type="text"
+              placeholder="Utilisateur"
+              name="username"
+              formControlName="username"
+              required
+            />
+          </div>
+          <div class="field">
+            <input
+              type="password"
+              placeholder="Password"
+              name="password"
+              formControlName="password"
+              required
+            />
+          </div>
+          <!-- <div class="pass-link">
                         <a href="#">Mot de passe oublié ?</a>
                     </div> -->
-                    <div class="field btn">
-                        <div class="btn-layer"></div>
-                        <input type="submit" value="Connexion">
-                    </div>
-                    <div class="signup-link">
-                    </div>
-                </form>
-            </div>
-        </div>
+          <div class="field btn">
+            <div class="btn-layer"></div>
+            <input type="submit" value="Connexion" />
+          </div>
+          <div class="signup-link"></div>
+        </form>
+      </div>
     </div>
+  </div>
 </div>

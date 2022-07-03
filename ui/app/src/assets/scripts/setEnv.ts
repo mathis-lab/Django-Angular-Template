@@ -35,9 +35,7 @@ const targetPath = isProduction
   ? './src/environments/environment.prod.ts'
   : './src/environments/environment.ts';
 
-const http_or_https = isSSL
-  ? 'https'
-  : 'http';
+const http_or_https = isSSL ? 'https' : 'http';
 
 //creates the `environment.prod.ts` or `environment.ts` file if it does not exist
 writeFileUsingFS(targetPath, '');

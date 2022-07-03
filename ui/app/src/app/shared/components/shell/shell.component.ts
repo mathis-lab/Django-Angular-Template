@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from 'src/app/core/models/user';
 import { AuthService } from '../../../core/auth.service';
 
@@ -9,12 +9,12 @@ import { AuthService } from '../../../core/auth.service';
   styleUrls: ['./shell.component.scss']
 })
 export class ShellComponent {
-  title = "Menu";
+  title = 'Menu';
   currentUser: User;
 
   constructor(private router: Router, private authService: AuthService) {
-    this.authService.currentUser.subscribe(x => {
-      this.currentUser = x
+    this.authService.currentUser.subscribe((x) => {
+      this.currentUser = x;
     });
   }
 
@@ -22,5 +22,4 @@ export class ShellComponent {
     this.authService.logout();
     this.router.navigate(['/login']);
   }
-
 }

@@ -1,14 +1,16 @@
-.header, .dialog-message {
-    text-transform: lowercase;
+.header,
+.dialog-message {
+  text-transform: lowercase;
 }
-.header::first-letter, .dialog-message::first-letter {
-    text-transform: uppercase;
+.header::first-letter,
+.dialog-message::first-letter {
+  text-transform: uppercase;
 }
 .btn-cancel {
-    background-color: red;
-    color: #fff;
+  background-color: red;
+  color: #fff;
 }
 
 .dialog-actions {
-    flex-flow: row-reverse;
+  flex-flow: row-reverse;
 }

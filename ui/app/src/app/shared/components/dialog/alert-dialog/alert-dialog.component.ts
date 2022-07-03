@@ -1,5 +1,5 @@
 import { Component, HostListener, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-alert-dialog',
@@ -7,17 +7,20 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./alert-dialog.component.css']
 })
 export class AlertDialogComponent {
-
-  constructor(@Inject(MAT_DIALOG_DATA) public data: {
-    message: string,
-    title: string
-  }, private mdDialogRef: MatDialogRef<AlertDialogComponent>) { }
+  constructor(
+    @Inject(MAT_DIALOG_DATA)
+    public data: {
+      message: string;
+      title: string;
+    },
+    private mdDialogRef: MatDialogRef<AlertDialogComponent>
+  ) {}
 
   public cancel() {
     this.close(false);
   }
 
-  public close(value:any) {
+  public close(value: any) {
     this.mdDialogRef.close(value);
   }
 
@@ -25,7 +28,7 @@ export class AlertDialogComponent {
     this.close(true);
   }
 
-  @HostListener("keydown.esc") 
+  @HostListener('keydown.esc')
   public onEsc() {
     this.close(false);
   }

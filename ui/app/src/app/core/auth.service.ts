@@ -11,11 +11,13 @@ import { Router } from '@angular/router';
 export class AuthService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
-  httpOptions:any = {};
-  error:string = "";
+  httpOptions: any = {};
+  error: string = '';
 
   constructor(private http: HttpClient, private router: Router) {
-    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')!));
+    this.currentUserSubject = new BehaviorSubject<User>(
+      JSON.parse(localStorage.getItem('currentUser')!)
+    );
     if (this.currentUserSubject.value) {
       this.currentUserSubject.value.connected = false;
     }
@@ -25,9 +27,10 @@ export class AuthService {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
-        "Access-Control-Allow-Credentials": "true",
-        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-        "Access-Control-Allow-Headers": "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers"
+        'Access-Control-Allow-Credentials': 'true',
+        'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+        'Access-Control-Allow-Headers':
+          'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers'
       })
     };
   }
@@ -37,54 +40,64 @@ export class AuthService {
   }
 
   public login(username: string, password: string) {
-    console.log("Login...");
-    return this.http.post<any>(environment.apiUrl + '/api/token/', { username, password }).pipe(map(
-      user => {
-        user.connected = true;
-        localStorage.setItem('currentUser', JSON.stringify(user));
-        this.currentUserSubject.next(user);
-        console.log(user);
-        return user;
-    }));
+    console.log('Login...');
+    return this.http
+      .post<any>(environment.apiUrl + '/api/token/', { username, password })
+      .pipe(
+        map((user) => {
+          user.connected = true;
+          localStorage.setItem('currentUser', JSON.stringify(user));
+          this.currentUserSubject.next(user);
+          console.log(user);
+          return user;
+        })
+      );
   }
 
   public loginToken(token: string) {
-    console.log("Login with Token...");
-    return this.http.post<any>(environment.apiUrl + '/api/token/refresh/', {refresh: token}).pipe(map(
-      user => {
-        user.connected = true;
-        localStorage.setItem('currentUser', JSON.stringify(user));
-        this.currentUserSubject.next(user);
-        console.log(user);
-        return user;
-    }));
+    console.log('Login with Token...');
+    return this.http
+      .post<any>(environment.apiUrl + '/api/token/refresh/', { refresh: token })
+      .pipe(
+        map((user) => {
+          user.connected = true;
+          localStorage.setItem('currentUser', JSON.stringify(user));
+          this.currentUserSubject.next(user);
+          console.log(user);
+          return user;
+        })
+      );
   }
 
   public refreshToken() {
-    console.log("Refresh Token...");
-    return this.http.post<any>(environment.apiUrl + '/api/token/refresh/', {refresh: this.currentUserSubject.value.refresh}).pipe(map(
-      user => {
-        user.connected = true;
-        user = {...this.currentUserSubject.value, ...user};
-        localStorage.setItem('currentUser', JSON.stringify(user));
-        this.currentUserSubject.next(user);
-        console.log(user);
-        return user;
-      }
-    ));
+    console.log('Refresh Token...');
+    return this.http
+      .post<any>(environment.apiUrl + '/api/token/refresh/', {
+        refresh: this.currentUserSubject.value.refresh
+      })
+      .pipe(
+        map((user) => {
+          user.connected = true;
+          user = { ...this.currentUserSubject.value, ...user };
+          localStorage.setItem('currentUser', JSON.stringify(user));
+          this.currentUserSubject.next(user);
+          console.log(user);
+          return user;
+        })
+      );
   }
 
   public getUserInfo() {
-    console.log("Get User Info...");
-    return this.http.get<any>(environment.apiUrl + '/api/core/user/').subscribe(
-      user => {
-        user = {...this.currentUserSubject.value, ...user};
+    console.log('Get User Info...');
+    return this.http
+      .get<any>(environment.apiUrl + '/api/core/user/')
+      .subscribe((user) => {
+        user = { ...this.currentUserSubject.value, ...user };
         localStorage.setItem('currentUser', JSON.stringify(user));
         this.currentUserSubject.next(user);
         console.log(user);
         return user;
-      }
-    );
+      });
   }
 
   public checkToken() {
@@ -95,19 +108,25 @@ export class AuthService {
     }
   }
 
-
   public verifyToken() {
-    console.log("Verify Token...");
-    return this.http.post<any>(environment.apiUrl + '/api/token/verify/', {access: this.currentUserSubject.value.access}).subscribe(
-      user => {
+    console.log('Verify Token...');
+    return this.http
+      .post<any>(environment.apiUrl + '/api/token/verify/', {
+        access: this.currentUserSubject.value.access
+      })
+      .subscribe((user) => {
         console.log(user);
         return user;
-      }
-    );
+      });
   }
 
-  public getToken():string|undefined { return this.currentUserSubject.value?.access; }
-  public getRefreshToken() { return this.currentUserSubject.value?.refresh; }
+  public getToken(): string | undefined {
+    return this.currentUserSubject.value?.access;
+  }
+
+  public getRefreshToken() {
+    return this.currentUserSubject.value?.refresh;
+  }
 
   public logout() {
     // remove user from local storage to log user out
@@ -117,5 +136,4 @@ export class AuthService {
     }
     this.router.navigate(['/login']);
   }
-
 }
