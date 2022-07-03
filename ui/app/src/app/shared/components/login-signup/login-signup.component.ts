@@ -36,7 +36,7 @@ export class LoginSignupComponent implements OnInit {
     // get return url from route parameters or default to '/'
     console.log(this.route.snapshot.queryParams);
     this.returnUrl =
-      this.route.snapshot.queryParams.returnUrl || '/home/simulation';
+      this.route.snapshot.queryParams.returnUrl || '/home';
     if (
       'username' in this.route.snapshot.queryParams &&
       'password' in this.route.snapshot.queryParams

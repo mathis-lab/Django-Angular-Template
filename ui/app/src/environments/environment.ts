@@ -2,5 +2,5 @@
 export const environment = {
   production: false,
   staticURL: '',
-  apiUrl: 'http://localhost'
+  apiUrl: 'http://localhost:8000'
 };
