@@ -1,6 +1,6 @@
 from django.contrib.auth.base_user import BaseUserManager
 from django.db.models import QuerySet
-
+import os
 
 import logging
 
@@ -49,7 +49,7 @@ class UserManager(BaseUserManager):
             username=username,
             password=password,
         )
-        user.staff = True
+        user.is_staff = True
         user.save(using=self._db)
         return user
 
@@ -62,7 +62,14 @@ class UserManager(BaseUserManager):
             username=username,
             password=password,
         )
-        user.staff = True
+        user.is_superuser = True
         user.admin = True
         user.save(using=self._db)
         return user
+
+    def init_table(self):
+        self.create_superuser(
+            email=os.getenv("DEFAULT_SUPERUSER_MAIL"),
+            username=os.getenv("DEFAULT_SUPERUSER_USERNAME"),
+            password=os.getenv("DEFAULT_SUPERUSER_PASSWORD"),
+        )
