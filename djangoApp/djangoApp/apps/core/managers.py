@@ -18,9 +18,6 @@ class UserManager(BaseUserManager):
         email,
         username,
         password=None,
-        is_active=True,
-        is_staff=False,
-        is_admin=False,
     ):
         """
         Creates and saves a User with the given email and password.
@@ -63,7 +60,7 @@ class UserManager(BaseUserManager):
             password=password,
         )
         user.is_superuser = True
-        user.admin = True
+        user.is_staff = True
         user.save(using=self._db)
         return user
 
